@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""The Raspberry http thread
+"""The Raspberry nxp thread
 
-Server files using the http protocol
+http://www.framboise314.fr/jai-teste-pour-vous-la-carte-explore-nfc-delement-14-12/
 
 """
 
@@ -71,7 +71,7 @@ class NxpBus(JNTBus):
         :param kwargs: parameters transmitted to :py:class:`smbus.SMBus` initializer
         """
         JNTBus.__init__(self, **kwargs)
-        self._lock =  threading.Lock()
+        self.lock =  threading.Lock()
         self.mifare = None
 
     def check_heartbeat(self):
@@ -138,6 +138,19 @@ class ReaderComponent(JNTComponent):
         """
         JNTComponent.stop(self)
         return True
+
+    def loop(self, stopevent):
+        """loop
+
+        """
+        try:
+            self.lock.acquire()
+            uid = self.mifare.select()
+            logger.debug("get nfc uuid : %s", uid)
+        except nxppy.SelectError:
+            logger.exception("Exception when polling NFC reader")
+        finally:
+            self.lock.release()
 
 class WriterComponent(JNTComponent):
     """ A resource ie /rrd """
