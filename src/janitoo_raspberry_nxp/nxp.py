@@ -76,7 +76,6 @@ class NxpBus(JNTBus):
 
     def check_heartbeat(self):
         """Check that the component is 'available'
-
         """
         #~ print "it's me %s : %s" % (self.values['upsname'].data, self._ups_stats_last)
         if self.mifare is not None:
