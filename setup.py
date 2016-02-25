@@ -106,7 +106,7 @@ setup(
       'https://github.com/bibi21000/janitoo/archive/master.zip#egg=janitoo',
       'https://github.com/bibi21000/janitoo_raspberry/archive/master.zip#egg=janitoo_raspberry',
       'https://github.com/adafruit/Adafruit_Python_GPIO/archive/master.zip#egg=Adafruit-GPIO',
-      #~ 'https://github.com/svvitale/nxppy/archive/master.zip#egg=nxppy',
+      'https://github.com/svvitale/nxppy/archive/master.zip#egg=nxppy',
     ],
     entry_points = janitoo_entry_points,
 )
