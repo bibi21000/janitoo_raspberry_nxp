@@ -129,6 +129,8 @@ develop:
 	@echo "Installation for developpers of ${MODULENAME} finished."
 
 docker-deps:
+	git clone https://github.com/svvitale/nxppy.git
+	cd nxppy && python setup.py build
 	@echo
 	@echo "Docker dependencies for ${MODULENAME} installed."
 
