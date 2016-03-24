@@ -85,6 +85,9 @@ endif
 ifneq ('${DEBIANDEPS}','')
 	sudo apt-get install -y ${DEBIANDEPS}
 endif
+	git clone https://github.com/svvitale/nxppy.git
+	cd nxppy && python setup.py build
+	cd nxppy && python setup.py install
 	@echo
 	@echo "Dependencies for ${MODULENAME} finished."
 
@@ -131,6 +134,7 @@ develop:
 docker-deps:
 	git clone https://github.com/svvitale/nxppy.git
 	cd nxppy && python setup.py build
+	cd nxppy && python setup.py install
 	@echo
 	@echo "Docker dependencies for ${MODULENAME} installed."
 
@@ -145,8 +149,6 @@ travis-deps:
 	pip install git+git://github.com/bibi21000/janitoo_nosetests@master
 	pip install git+git://github.com/bibi21000/janitoo_nosetests_flask@master
 	pip install coveralls
-	git clone https://github.com/svvitale/nxppy.git
-	cd nxppy && python setup.py build
 	@echo
 	@echo "Travis dependencies for ${MODULENAME} installed."
 
