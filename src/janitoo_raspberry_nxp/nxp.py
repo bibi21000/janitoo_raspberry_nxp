@@ -107,7 +107,7 @@ class ReaderComponent(JNTComponent):
         """
         """
         self._inputs = {}
-        oid = kwargs.pop('oid', 'rnxp.reader')
+        oid = kwargs.pop('oid', 'rpinxp.reader')
         product_name = kwargs.pop('product_name', "NXP Reader")
         name = kwargs.pop('name', "NXP Reader")
         JNTComponent.__init__(self, oid=oid, name=name, product_name=product_name, **kwargs)
@@ -141,7 +141,7 @@ class ReaderComponent(JNTComponent):
 
     def loop(self, stopevent):
         """loop
-
+        Need to de threaded as acquire can be a long operation
         """
         try:
             self.lock.acquire()
@@ -159,7 +159,7 @@ class WriterComponent(JNTComponent):
         """
         """
         self._inputs = {}
-        oid = kwargs.pop('oid', 'rnxp.writer')
+        oid = kwargs.pop('oid', 'rpinxp.writer')
         product_name = kwargs.pop('product_name', "NXP Writer")
         name = kwargs.pop('name', "NXP Writer")
         JNTComponent.__init__(self, oid=oid, name=name, product_name=product_name, **kwargs)
