@@ -1,1 +1,1 @@
-cmake
+cmake libglib2.0 glib-networking-services libreadline6-dev libglib2.0-dev glib-networking-services build-essential autoconf libtool
