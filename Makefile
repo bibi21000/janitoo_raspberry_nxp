@@ -86,7 +86,7 @@ ifneq ('${DEBIANDEPS}','')
 	sudo apt-get install -y ${DEBIANDEPS}
 endif
 	#~ git clone https://github.com/svvitale/nxppy.git
-	git clone https://github.com/AlterCodex/nxppy/archive/master.zip#egg=nxppy
+	git clone https://github.com/AlterCodex/nxppy.git
 	cd nxppy && python setup.py build
 	cd nxppy && python setup.py install
 	@echo
