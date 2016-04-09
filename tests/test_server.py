@@ -21,7 +21,7 @@ __license__ = """
 """
 __author__ = 'Sébastien GALLET aka bibi21000'
 __email__ = 'bibi21000@gmail.com'
-__copyright__ = "Copyright © 2013-2014-2015 Sébastien GALLET aka bibi21000"
+__copyright__ = "Copyright © 2013-2014-2015-2016 Sébastien GALLET aka bibi21000"
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -55,6 +55,18 @@ class TestPiSerser(JNTTServer, JNTTServerCommon):
     server_class = PiServer
     server_conf = "tests/data/janitoo_raspberry_nxp.conf"
     hadds = [HADD%(150,0), HADD%(150,1), HADD%(150,2)]
+
+    def test_011_start_reload_stop(self):
+        self.skipRasperryTest()
+        JNTTServerCommon.test_011_start_reload_stop(self)
+
+    def test_012_start_reload_threads_stop(self):
+        self.skipRasperryTest()
+        JNTTServerCommon.test_012_start_reload_threads_stop(self)
+
+    def test_030_wait_for_all_nodes(self):
+        self.skipRasperryTest()
+        JNTTServerCommon.test_030_wait_for_all_nodes(self)
 
     def test_040_server_start_no_error_in_log(self):
         self.onlyRasperryTest()

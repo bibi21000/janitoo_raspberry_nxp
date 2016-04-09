@@ -24,7 +24,7 @@ else
 python_version_full := $(wordlist 2,4,$(subst ., ,$(shell ${PYTHON_EXEC} --version 2>&1)))
 endif
 
-janitoo_version := $(shell ${PYTHON_EXEC} _version.py)
+janitoo_version := $(shell ${PYTHON_EXEC} _version.py 2>/dev/null)
 
 python_version_major = $(word 1,${python_version_full})
 python_version_minor = $(word 2,${python_version_full})
@@ -36,8 +36,7 @@ ifeq (${python_version_major},3)
 endif
 
 MODULENAME   = $(shell basename `pwd`)
-
-NOSECOVER     = --cover-package=janitoo,janitoo_db,${MODULENAME} --with-coverage --cover-inclusive --cover-tests --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
+NOSEMODULES   = janitoo,janitoo_factory,janitoo_db
 
 DEBIANDEPS := $(shell [ -f debian.deps ] && cat debian.deps)
 BASHDEPS := $(shell [ -f bash.deps ] && echo "bash.deps")
@@ -48,7 +47,10 @@ TAGGED := $(shell git tag | grep -c v${janitoo_version} )
 
 -include Makefile.local
 
-.PHONY: help check-tag clean all build develop install uninstall clean-doc doc certification tests pylint deps
+NOSECOVER     = --cover-package=${NOSEMODULES},${MODULENAME} --with-coverage --cover-inclusive --cover-html --cover-html-dir=${BUILDDIR}/docs/html/tools/coverage --with-html --html-file=${BUILDDIR}/docs/html/tools/nosetests/index.html
+NOSEDOCKER     = --cover-package=${NOSEMODULES},${MODULENAME} --with-coverage --cover-inclusive --with-xunit --xunit-testsuite-name=${MODULENAME}
+
+.PHONY: help check-tag clean all build develop install uninstall clean-doc doc certification tests pylint deps docker-tests
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -152,6 +154,13 @@ travis-deps:
 	pip install coveralls
 	@echo
 	@echo "Travis dependencies for ${MODULENAME} installed."
+
+docker-tests:
+	@echo
+	@echo "Docker tests for ${MODULENAME} start."
+	[ -f tests/test_docker.py ] && $(NOSE) $(NOSEOPTS) $(NOSEDOCKER) tests/test_docker.py
+	@echo
+	@echo "Docker tests for ${MODULENAME} finished."
 
 tests:
 	-mkdir -p ${BUILDDIR}/docs/html/tools/coverage
