@@ -1,0 +1,19 @@
+janitoo_raspberry_nxp package
+=============================
+
+Show janitoo's extensions.
+
+Core extensions
+---------------
+
+Threads
+^^^^^^^
+
+ - rpinxp (janitoo_raspberry_nxp.thread_nxp:make_thread)
+
+Components
+^^^^^^^^^^
+
+ - rpinxp.reader (janitoo_raspberry_nxp.nxp:make_reader)
+ - rpinxp.writer (janitoo_raspberry_nxp.nxp:make_writer)
+

@@ -1,0 +1,30 @@
+janitoo_raspberry_nxp package
+=============================
+
+Submodules
+----------
+
+janitoo_raspberry_nxp.nxp module
+--------------------------------
+
+.. automodule:: janitoo_raspberry_nxp.nxp
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+janitoo_raspberry_nxp.thread_nxp module
+---------------------------------------
+
+.. automodule:: janitoo_raspberry_nxp.thread_nxp
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: janitoo_raspberry_nxp
+    :members:
+    :undoc-members:
+    :show-inheritance:
