@@ -48,7 +48,7 @@ assert(COMMAND_DESC[COMMAND_CONTROLLER] == 'COMMAND_CONTROLLER')
 ##############################################################
 
 def make_thread(options, force=False):
-    if get_option_autostart(options, 'rpinxp') == True or force:
+    if get_option_autostart(options, 'rpinxp') or force:
         return NxpThread(options)
     else:
         return None
